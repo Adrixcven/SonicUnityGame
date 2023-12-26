@@ -12,11 +12,18 @@ public class ThirdPersonCam : MonoBehaviour
 
     public float rotationSpeed;
 
+    /// <summary>
+    /// Locks the cursor and makes it invisible for a smooth user experience.
+    /// </summary>
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+    /// <summary>
+    /// Updates the orientation of the object based on player input,
+    /// ensuring the player's view direction and movement are correctly aligned.
+    /// </summary>
     private void Update()
     {
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
@@ -26,7 +33,7 @@ public class ThirdPersonCam : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 inputDir = orientation.forward * horizontalInput + orientation.right * -verticalInput;
 
-        if(inputDir != Vector3.zero)
+        if (inputDir != Vector3.zero)
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
     }
 

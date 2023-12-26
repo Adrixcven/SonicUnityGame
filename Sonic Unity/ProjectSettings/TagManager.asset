@@ -8,6 +8,10 @@ TagManager:
   - Wall
   - GM
   - GC
+  - SFX
+  - Music
+  - DifficultyAffected
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -16,11 +20,11 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - whatIsPlayer
   - whatIsSmallWall
   - whatIsWall
   - whatIsGround
-  - 
+  - whatIsPlatform
   - 
   - 
   - 

@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class for the checkpoint methods.
+/// </summary>
 public class Checkpoint : MonoBehaviour
 {
     public AudioSource checkpointSound;
-    private GameController GC;
+    private GameController gc;
 
+    /// <summary>
+    /// When waking up, the object looks for a GameObject with the "GC" tag and, if found, stores the GameController component in a variable.
+    /// </summary>
     void Awake()
     {
         GameObject respawnObject = GameObject.FindGameObjectWithTag("GC");
         if (respawnObject != null)
         {
-            GC = respawnObject.GetComponent<GameController>();
-            if (GC == null)
+            gc = respawnObject.GetComponent<GameController>();
+            if (gc == null)
             {
                 Debug.LogError("No GameController");
             }
@@ -23,25 +29,20 @@ public class Checkpoint : MonoBehaviour
             Debug.LogError("No object found with the GC tag.");
         }
     }
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
-
+    /// <summary>
+    /// When the parent of the collider has the tag "Player", if the respawnPoint in GameController is not this object, it changes to this object.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         GameObject enteringObject = other.transform.parent.gameObject;
         if (enteringObject.CompareTag("Player"))
         {
-            if (GC.RespawnPoint != this.gameObject)
+            if (gc.respawnPoint != this.gameObject)
             {
                 checkpointSound.Play();
-                GC.RespawnPoint = this.gameObject;
+                gc.respawnPoint = this.gameObject;
             }
 
         }

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3640003251758135473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 738627742652850723}
+  - component: {fileID: 1414526995874840827}
+  m_Layer: 0
+  m_Name: Game Controller
+  m_TagString: GC
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &738627742652850723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3640003251758135473}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 608.7352, y: 5.4662933, z: -12.103347}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1414526995874840827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3640003251758135473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae8b93c1123ca343ad2798d6525c601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rings: 0
+  ActualLives: 3
+  player: {fileID: 0}
+  invincible: 0
+  invincibleCooldown: 3
+  minutes: 0
+  seconds: 0
+  Score: 0
+  RespawnPoint: {fileID: 0}
+  TimeBonus: 0
+  RingBonus: 0
+  RingsLost: {fileID: 0}
+  LifeDown: {fileID: 0}
+  ScoreUpSound: {fileID: 0}
+  ScoreTotalSound: {fileID: 0}
+  GamePaused: 0

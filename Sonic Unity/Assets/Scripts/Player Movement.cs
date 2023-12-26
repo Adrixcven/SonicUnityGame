@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
+    public LayerMask whatIsPlatform;
     public bool grounded;
 
     public Transform orientation;
@@ -50,14 +51,15 @@ public class PlayerMovement : MonoBehaviour
     }
     public bool climbing;
 
-    [Header ("SpawnPosition")]
+    [Header("SpawnPosition")]
     public Transform Position;
 
     [Header("Another Files")]
     public Checkpoint checkpoint;
 
-
-    // Start is called before the first frame update
+    /// <summary>
+    /// Assigns the Rigidbody, Animator, and stops the particle system. Sets initial values for Rigidbody and jumping.
+    /// </summary>
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -69,12 +71,14 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
     }
 
+    /// <summary>
+    /// Called every frame. Handles player input, updates animation parameters, and controls movement speed.
+    /// Also, manages the particle system based on player movement.
+    /// </summary>
     private void Update()
     {
-
-
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.2f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.2f + 0.2f, whatIsGround | whatIsPlatform);
         if (grounded)
             anim.SetBool("InGround", true);
         else
@@ -86,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetFloat("Speed", rb.velocity.magnitude);
 
-        if(anim.GetFloat("Speed") > 0 && readyToJump && grounded)
+        if (anim.GetFloat("Speed") > 0 && readyToJump && grounded)
             particleSystem.Play();
         else
             particleSystem.Stop();
@@ -101,6 +105,9 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
         }
     }
+    /// <summary>
+    /// Sets the movement state based on certain conditions.
+    /// </summary>
     private void StateMachine()
     {
         if (climbing)
@@ -109,33 +116,40 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = climbSpeed;
         }
     }
-
+    /// <summary>
+    /// Called at a fixed rate every physics update. Moves the player based on input.
+    /// </summary>
     private void FixedUpdate()
     {
         MovePlayer();
 
     }
-
+    /// <summary>
+    /// Reads player input for movement and jumping.
+    /// </summary>
     private void MyInput()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        
+        Vector3 rotationEulerAngles = transform.rotation.eulerAngles;
 
+        // Get the rotation value along the x-axis
+        float rotationX = rotationEulerAngles.x;
+        float rotationZ = rotationEulerAngles.z;
+
+        // Calculate input direction for rotation
         Vector3 inputDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
 
+        // Rotate the player based on input direction
         if (inputDirection.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, 0.1f);
 
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            transform.rotation = Quaternion.Euler(rotationX, angle, rotationZ);
         }
-        
-        
 
-
-        // when to jump
+        // Handle jumping
         if (Input.GetKey(jumpkey) && readyToJump && grounded)
         {
 
@@ -149,47 +163,51 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
-
+    /// <summary>
+    /// Moves the player based on input direction and ground state.
+    /// </summary>
     private void MovePlayer()
     {
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         sideMoveDirection = orientation.forward * horizontalInput + orientation.right * verticalInput;
         backMoveDirection = orientation.forward * -verticalInput + orientation.right * -horizontalInput;
-        
 
-        // on ground
+
+        // Apply forces based on the movement state (on ground or in the air)
         if (grounded)
         {
-            if(verticalInput < 0)
+            if (verticalInput < 0)
                 rb.AddForce(backMoveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-            else if(horizontalInput != 0 && verticalInput == 0)
+            else if (horizontalInput != 0 && verticalInput == 0)
             {
-                if(horizontalInput >0)
+                if (horizontalInput > 0)
                     rb.AddForce(sideMoveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-                else if(horizontalInput < 0)
+                else if (horizontalInput < 0)
                     rb.AddForce(-sideMoveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
             }
             else
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-            
+
         }
         // in air
         else if (!grounded)
-        if(verticalInput < 0)
-                rb.AddForce(backMoveDirection.normalized * moveSpeed/2 * 10f, ForceMode.Force);
-            else if(horizontalInput != 0 && verticalInput == 0)
+            if (verticalInput < 0)
+                rb.AddForce(backMoveDirection.normalized * moveSpeed / 2 * 10f, ForceMode.Force);
+            else if (horizontalInput != 0 && verticalInput == 0)
             {
-                if(horizontalInput >0)
-                    rb.AddForce(sideMoveDirection.normalized * moveSpeed/2 * 10f, ForceMode.Force);
-                else if(horizontalInput < 0)
-                    rb.AddForce(-sideMoveDirection.normalized * moveSpeed/2 * 10f, ForceMode.Force);
+                if (horizontalInput > 0)
+                    rb.AddForce(sideMoveDirection.normalized * moveSpeed / 2 * 10f, ForceMode.Force);
+                else if (horizontalInput < 0)
+                    rb.AddForce(-sideMoveDirection.normalized * moveSpeed / 2 * 10f, ForceMode.Force);
             }
             else
-                rb.AddForce(moveDirection.normalized * moveSpeed/2 * 10f, ForceMode.Force);
-            
-    }
+                rb.AddForce(moveDirection.normalized * moveSpeed / 2 * 10f, ForceMode.Force);
 
+    }
+    /// <summary>
+    /// Controls the player's movement speed, limiting it if necessary.
+    /// </summary>
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -202,7 +220,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-
+    /// <summary>
+    /// Makes the player jump by applying an upward force.
+    /// </summary>
     private void Jump()
     {
         // reset y velocity
@@ -210,13 +230,16 @@ public class PlayerMovement : MonoBehaviour
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
+    /// <summary>
+    /// Resets the ability to jump after a cooldown period.
+    /// </summary>
     private void ResetJump()
     {
         readyToJump = true;
         anim.SetBool("Jumping", false);
     }
 
-   
-    
+
+
 
 }
