@@ -7,9 +7,9 @@ public class PlayerRingSpawn : MonoBehaviour
 
     public GameObject ringObject;
     /// <summary>
-    /// Spawns rings around the object in a random direction.
-    /// Calculates a random angle, converts it to radians, and determines the spawn position on a circle.
-    /// Instantiates a ring object at the calculated spawn position.
+    /// Genera anillos alrededor del objeto en una dirección aleatoria.
+    /// Calcula un ángulo aleatorio, lo convierte a radianes y determina la posición de generación en un círculo.
+    /// Instancia un objeto de anillo en la posición de generación calculada.
     /// </summary>
     public void SpawnRings()
     {

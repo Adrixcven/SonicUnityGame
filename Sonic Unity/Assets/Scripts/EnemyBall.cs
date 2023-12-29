@@ -14,21 +14,21 @@ public class EnemyBall : MonoBehaviour
     PhysicMaterial physicMaterial;
 
     /// <summary>
-    /// Assigns the GameController by finding a GameObject with the tag "GC".
+    /// Asigna el GameController encontrando un objeto con la etiqueta "GC".
     /// </summary>
     private void Awake()
     {
         gameController = GameObject.FindGameObjectWithTag("GC");
     }
     /// <summary>
-    /// Invokes the Setup method during initialization.
+    /// Invoca el método Setup durante la inicialización.
     /// </summary>
     private void Start()
     {
         Setup();
     }
     /// <summary>
-    /// Updates the lifetime of the object, destroying it if the maximum lifetime is exceeded.
+    /// Actualiza el tiempo de vida del objeto, destruyéndolo si se excede el tiempo máximo de vida.
     /// </summary>
     private void Update()
     {
@@ -36,8 +36,8 @@ public class EnemyBall : MonoBehaviour
         if (maxLifetime <= 0) Destroy(gameObject);
     }
     /// <summary>
-    /// Checks for the presence of a parent object, and if it's a player, performs actions
-    /// such as logging, handling shields, invincibility, and manipulating GameController values.
+    /// Verifica la presencia de un objeto padre y, si es un jugador, realiza acciones
+    /// como el registro, el manejo de escudos, la invencibilidad y la manipulación de los valores del GameController.
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
@@ -65,11 +65,9 @@ public class EnemyBall : MonoBehaviour
                     gameController.GetComponent<GameController>().EnableDisableShield();
             }
         }
-
-
     }
     /// <summary>
-    /// Sets up the object by configuring its physical material properties and gravity usage.
+    /// Configura el objeto mediante la configuración de sus propiedades de material físico y el uso de la gravedad.
     /// </summary>
     private void Setup()
     {

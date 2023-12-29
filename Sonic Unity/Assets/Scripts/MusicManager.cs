@@ -18,85 +18,91 @@ public class MusicManager : MonoBehaviour
     public AudioSource shieldPopSound;
     public AudioSource bgMusic;
     /// <summary>
-    /// Plays the sound for rings being lost.
+    /// Reproduce el sonido de pérdida de anillos.
     /// </summary>
     public void PlayRingsLost()
     {
         ringsLost.Play();
     }
+    /// <summary>
+    /// Reproduce el sonido de obtención de anillos.
+    /// </summary>
     public void PlayRingsGot()
     {
         ringsGot.Play();
     }
+    /// <summary>
+    /// Reproduce el sonido de aumento de vida.
+    /// </summary>
     public void PlayLifeUp()
     {
         lifeUp.Play();
     }
     /// <summary>
-    /// Plays the sound for decrementing a life.
+    /// Reproduce el sonido de decremento de vida.
     /// </summary>
     public void PlayLifeDown()
     {
         lifeDown.Play();
     }
     /// <summary>
-    /// Plays the sound for increasing the score.
+    /// Reproduce el sonido de aumento de puntuación.
     /// </summary>
     public void PlayScoreUpSound()
     {
         scoreUpSound.Play();
     }
     /// <summary>
-    /// Plays the sound for the total score.
+    /// Reproduce el sonido de puntuación total.
     /// </summary>
     public void PlayScoreTotalSound()
     {
         scoreTotalSound.Play();
     }
     /// <summary>
-    /// Plays the sound for opening a menu.
+    /// Reproduce el sonido de apertura de menú.
     /// </summary>
     public void PlayMenuOpenSound()
     {
         menuOpenSound.Play();
     }
     /// <summary>
-    /// Plays the sound for accepting a menu action.
+    /// Reproduce el sonido de aceptación de acción de menú.
     /// </summary>
     public void PlayMenuAcceptSound()
     {
         menuAcceptSound.Play();
     }
     /// <summary>
-    /// Plays a bleep sound for menu interactions.
+    /// Reproduce un sonido de pitido para interacciones de menú.
     /// </summary>
     public void PlayMenuBleepSound()
     {
         menuBleepSound.Play();
     }
     /// <summary>
-    /// Plays the sound for turning on a shield.
+    /// Reproduce el sonido de activación de escudo.
     /// </summary>
     public void PlayShieldOnSound()
     {
         shieldOnSound.Play();
     }
     /// <summary>
-    /// Plays the sound for a shield being popped.
+    /// Reproduce el sonido de desaparición de escudo.
     /// </summary>
     public void PlayShieldPopSound()
     {
         shieldPopSound.Play();
     }
     /// <summary>
-    /// Plays the background music.
+    /// Reproduce la música de fondo.
     /// </summary>
     public void PlayBGMusic()
     {
         bgMusic.Play();
     }
     /// <summary>
-    /// Pauses the background music.
+    /// Pausa la música de fondo.
     /// </summary>
     public void PauseBGMusic()
     {

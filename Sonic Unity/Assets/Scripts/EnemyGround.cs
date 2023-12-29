@@ -26,7 +26,7 @@ public class EnemyGround : MonoBehaviour
     public AudioSource enemyHitted;
 
     /// <summary>
-    /// Initializes references to the GameController, player, NavMeshAgent, and Animator components.
+    /// Inicializa las referencias al GameController, player, NavMeshAgent y Animator en Awake().
     /// </summary>
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class EnemyGround : MonoBehaviour
         anim = GetComponent<Animator>();
     }
     /// <summary>
-    /// Controls the activation of the GameObject based on the current game difficulty.
+    /// Controla la activación del GameObject basándose en la dificultad actual del juego en Start().
     /// </summary>
     private void Start()
     {
@@ -52,7 +52,7 @@ public class EnemyGround : MonoBehaviour
             gameObject.SetActive(true);
     }
     /// <summary>
-    /// Checks for the player's presence within sight range and initiates patrol or chase behavior accordingly.
+    /// Verifica la presencia del jugador dentro del rango de visión y activa el comportamiento de patrulla o persecución según corresponda en Update().
     /// </summary>
     private void Update()
     {
@@ -64,7 +64,7 @@ public class EnemyGround : MonoBehaviour
 
     }
     /// <summary>
-    /// Handles patrol behavior, setting walk points and moving towards them.
+    /// Maneja el comportamiento de patrulla, estableciendo puntos de destino y moviéndose hacia ellos.
     /// </summary>
     private void Patroling()
     {
@@ -83,7 +83,7 @@ public class EnemyGround : MonoBehaviour
 
     }
     /// <summary>
-    /// Searches for a random walk point within the specified range on the NavMesh.
+    /// Busca un punto de patrulla aleatorio dentro del rango especificado en el NavMesh.
     /// </summary>
     private void SearchWalkPoint()
     {
@@ -99,7 +99,7 @@ public class EnemyGround : MonoBehaviour
             walkPointSet = true;
     }
     /// <summary>
-    /// Initiates chase behavior, setting the destination to the player's position.
+    /// Inicia el comportamiento de persecución, estableciendo el destino a la posición del jugador.
     /// </summary>
     private void ChasePlayer()
     {
@@ -107,7 +107,7 @@ public class EnemyGround : MonoBehaviour
         agent.SetDestination(player.position);
     }
     /// <summary>
-    /// Handles collision with the player, applying damage and performing actions based on game conditions.
+    /// Maneja la colisión con el jugador, aplicando daño y realizando acciones basadas en las condiciones del juego.
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
@@ -147,7 +147,7 @@ public class EnemyGround : MonoBehaviour
         }
     }
     /// <summary>
-    /// Initiates the enemy taking damage sequence, including animation and destruction.
+    /// Inicia la secuencia de recibir daño, incluyendo la animación y la destrucción del enemigo.
     /// </summary>
     public void TakeDamage()
     {
@@ -157,8 +157,8 @@ public class EnemyGround : MonoBehaviour
         StartCoroutine(EnemyDeadRoutine());
     }
     /// <summary>
-    /// Coroutine for handling the enemy's death sequence, including a delay before destruction.
-    /// Also awards points to the GameController.
+    /// Coroutine para manejar la secuencia de muerte del enemigo, incluyendo un retraso antes de la destrucción.
+    /// También otorga puntos al GameController.
     /// </summary>
     /// <returns></returns>
     IEnumerator EnemyDeadRoutine()

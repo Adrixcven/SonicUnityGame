@@ -10,7 +10,7 @@ public class Monitors : MonoBehaviour
     public ParticleSystem particleSystem;
 
     /// <summary>
-    /// Sets up the GameController and adjusts the object's activity based on the current game difficulty.
+    /// Configura el GameController y ajusta la actividad del objeto según la dificultad actual del juego.
     /// </summary>
     void Start()
     {
@@ -28,10 +28,10 @@ public class Monitors : MonoBehaviour
 
     }
     /// <summary>
-    /// Checks for the entering object, and if it's a player and not grounded,
-    /// performs actions such as adding lives, playing sounds, applying force, and deactivating the object.
+    /// Verifica el objeto que ingresa y, si es un jugador y no está en el suelo,
+    /// realiza acciones como agregar vidas, reproducir sonidos, aplicar fuerza y desactivar el objeto.
     /// </summary>
-    /// <param name="collision">Information about the collision event.</param>
+    /// <param name="collision">Información sobre el evento de colisión.</param>
     private void OnCollisionEnter(Collision collision)
     {
         GameObject enteringObject = collision.gameObject;

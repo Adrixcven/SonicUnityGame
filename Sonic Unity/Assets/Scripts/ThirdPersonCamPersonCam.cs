@@ -13,7 +13,7 @@ public class ThirdPersonCam : MonoBehaviour
     public float rotationSpeed;
 
     /// <summary>
-    /// Locks the cursor and makes it invisible for a smooth user experience.
+    /// Bloquea el cursor y lo hace invisible para una experiencia de usuario más suave.
     /// </summary>
     private void Start()
     {
@@ -21,8 +21,8 @@ public class ThirdPersonCam : MonoBehaviour
         Cursor.visible = false;
     }
     /// <summary>
-    /// Updates the orientation of the object based on player input,
-    /// ensuring the player's view direction and movement are correctly aligned.
+    /// Actualiza la orientación del objeto basándose en la entrada del jugador,
+    /// asegurando que la dirección de vista y el movimiento del jugador estén correctamente alineados.
     /// </summary>
     private void Update()
     {

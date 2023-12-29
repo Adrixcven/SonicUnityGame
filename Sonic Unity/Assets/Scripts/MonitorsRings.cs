@@ -11,7 +11,7 @@ public class MonitorsRings : MonoBehaviour
     public AudioSource livesUpSound;
 
     /// <summary>
-    /// Assigns the GameController by finding a GameObject with the tag "GC".
+    /// Asigna el GameController encontrando un GameObject con la etiqueta "GC".
     /// </summary>
     void Start()
     {
@@ -19,10 +19,10 @@ public class MonitorsRings : MonoBehaviour
 
     }
     /// <summary>
-    /// Checks if the colliding object is a player and not grounded.
-    /// If conditions are met, adds rings, points, plays sounds, and handles additional game logic.
+    /// Verifica si el objeto en colisión es un jugador y no está en el suelo.
+    /// Si se cumplen las condiciones, agrega anillos, puntos, reproduce sonidos y maneja la lógica adicional del juego.
     /// </summary>
-    /// <param name="collision">The Collision data associated with the collision.</param>
+    /// <param name="collision">Datos de colisión asociados a la colisión.</param>
     private void OnCollisionEnter(Collision collision)
     {
         GameObject enteringObject = collision.gameObject;

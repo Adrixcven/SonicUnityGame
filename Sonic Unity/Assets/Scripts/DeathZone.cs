@@ -11,7 +11,7 @@ public class DeathZone : MonoBehaviour
     public GameObject gameController;
     public AudioSource deathSound;
     /// <summary>
-    /// initializes the gameController by finding the GameObject with the tag "GC" in the scene.
+    /// Inicializa el gameController encontrando el GameObject con la etiqueta "GC" en la escena.
     /// </summary>
     void Start()
     {
@@ -19,8 +19,8 @@ public class DeathZone : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks for the presence of a parent object, and if it's a player, performs actions such as disabling shields,
-    /// resetting rings, and decrementing lives in the GameController.
+    /// Verifica la presencia de un objeto padre y, si es un jugador, realiza acciones como desactivar escudos,
+    /// restablecer anillos y decrementar vidas en el GameController.
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)

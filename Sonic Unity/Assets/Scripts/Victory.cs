@@ -9,7 +9,7 @@ public class Victory : MonoBehaviour
     public AudioSource victorySound;
     public float audioLength;
     /// <summary>
-    /// Configures cursor settings, sets audio length, and starts the MainMenu coroutine.
+    /// Configura la configuración del cursor, muestra el cursor y actualiza la pantalla de victoria.
     /// </summary>
     private void Awake()
     {
@@ -21,19 +21,20 @@ public class Victory : MonoBehaviour
 
     }
     /// <summary>
-    /// Coroutine for handling actions after a specified delay.
-    /// Waits for the duration of the audio clip and triggers the exit button in the HUD.
+    /// Corrutina para manejar acciones después de un retardo especificado.
+    /// Espera la duración del clip de audio y activa el botón de salida en la interfaz de usuario.
     /// </summary>
-    /// <returns>Yield instruction to wait for the specified duration.</returns>
+    /// <returns>Instrucción de yield para esperar la duración especificada.</returns>
     IEnumerator MainMenu()
     {
         yield return new WaitForSeconds(audioLength);
         HUDControl.instance.OnButtonExit();
     }
+    /// <summary>
+    /// Actualiza el texto en pantalla con los puntos finales del juego.
+    /// </summary>
      public void UpdateVictoryScreenPoints()
     {
         finalPointsText.text = GameController.instance.score.ToString();
     }
-
-    
 }

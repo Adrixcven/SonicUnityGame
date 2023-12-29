@@ -11,7 +11,12 @@ public class GoalPlate : MonoBehaviour
     public AudioSource stageClearSound;
     public AudioSource musicSound;
 
-
+    /// <summary>
+    /// Maneja la lógica cuando un objeto entra en el área del objetivo.
+    /// Detiene el temporizador, detiene la música, congela al jugador, reproduce el sonido de nivel completado,
+    /// calcula y muestra la bonificación, actualiza la interfaz de usuario y avanza al siguiente nivel.
+    /// </summary>
+    /// <param name="other">Collider del objeto que entra en el área.</param>
     private void OnTriggerEnter(Collider other)
     {
         audioLength = stageClearSound.clip.length;
@@ -31,25 +36,33 @@ public class GoalPlate : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             StartCoroutine(NextLevel());
-
-
-
         }
     }
+    /// <summary>
+    /// Corrutina para aplicar una bonificación a la puntuación después de un retardo específico.
+    /// </summary>
     IEnumerator ChangeBonusVictory()
     {
         yield return new WaitForSeconds(audioLength / 2);
         GameController.instance.BonusInScore();
     }
+    /// <summary>
+    /// Corrutina para detener el movimiento del personaje después de un breve retardo.
+    /// Congela el Rigidbody del personaje para detener cualquier movimiento.
+    /// </summary>
+    /// <param name="rigidbody">Rigidbody del personaje.</param>
     IEnumerator StopCharacter(Rigidbody rigidbody)
     {
         yield return new WaitForSeconds(0.01f);
         if (rigidbody != null)
-            {
-                rigidbody.velocity = Vector3.zero;
-                rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-            }
+        {
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
+    /// <summary>
+    /// Corrutina para rotar gradualmente el objeto durante un período de tiempo.
+    /// </summary>
     IEnumerator Rotation()
     {
         yield return new WaitForSeconds(1);
@@ -63,6 +76,9 @@ public class GoalPlate : MonoBehaviour
             yield return null;
         }
     }
+    /// <summary>
+    /// Corrutina para cargar el siguiente nivel después de un retardo específico.
+    /// </summary>
     IEnumerator NextLevel()
     {
         yield return new WaitForSeconds(8f);

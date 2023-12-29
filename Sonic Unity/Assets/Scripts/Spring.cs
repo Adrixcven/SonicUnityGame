@@ -12,10 +12,10 @@ public class Spring : MonoBehaviour
     public bool diagonalSpring = false;
 
     /// <summary>
-    /// Retrieves the parent GameObject from the Collider and obtains its Animator and Rigidbody components.
-    /// Applies a spring force to propel the object upwards, playing an animation and sound effect.
+    /// Obtiene el GameObject padre del Collider y sus componentes Animator y Rigidbody.
+    /// Aplica una fuerza de resorte para impulsar el objeto hacia arriba, reproduce una animación y un efecto de sonido.
     /// </summary>
-    /// <param name="other">The Collider entering the trigger zone.</param>
+    /// <param name="other">El Collider que entra en la zona del trigger.</param>
     private void OnTriggerEnter(Collider other)
     {
 

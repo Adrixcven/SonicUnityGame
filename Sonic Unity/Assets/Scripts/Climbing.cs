@@ -35,7 +35,7 @@ public class Climbing : MonoBehaviour
     private bool smallWallFront;
 
     /// <summary>
-    /// Updates the character's behavior by performing wall checks, managing the state machine, and executing specific movements based on the current state.
+    /// Actualiza el comportamiento del personaje realizando comprobaciones de pared, gestionando la máquina de estados y ejecutando movimientos específicos basados en el estado actual.
     /// </summary>
     private void Update()
     {
@@ -45,7 +45,8 @@ public class Climbing : MonoBehaviour
         if (smallClimbing) SmallClimbingMovement();
     }
     /// <summary>
-    /// Controls the state machine for wall climbing behavior. Checks for input and wall conditions to initiate climbing, decrement climbing timer, and stop climbing when necessary.
+    /// Controla la máquina de estados para el comportamiento de escalada en la pared. 
+    /// Verifica la entrada y las condiciones de la pared para iniciar la escalada, decrementar el temporizador de escalada y detener la escalada cuando sea necesario.
     /// </summary>
     private void StateMachine()
     {
@@ -71,7 +72,7 @@ public class Climbing : MonoBehaviour
     }
 
     /// <summary>
-    /// Performs wall detection in the forward direction using sphere casting.
+    /// Realiza la detección de pared en la dirección frontal utilizando un lanzamiento de esfera.
     /// </summary>
     private void WallCheck()
     {
@@ -85,7 +86,7 @@ public class Climbing : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles the initiation of climbing, setting relevant flags.
+    /// Maneja el inicio de la escalada, estableciendo banderas relevantes.
     /// </summary>
     private void StartClimbing()
     {
@@ -93,7 +94,7 @@ public class Climbing : MonoBehaviour
         pm.climbing = true;
     }
     /// <summary>
-    /// Initiates a small climbing action, setting necessary flags.
+    /// Inicia una acción de escalada pequeña, estableciendo las banderas necesarias.
     /// </summary>
     private void StartSmallClimbing()
     {
@@ -102,21 +103,21 @@ public class Climbing : MonoBehaviour
     }
 
     /// <summary>
-    /// Manages climbing movement by updating the Rigidbody velocity.
+    /// Gestiona el movimiento de escalada actualizando la velocidad del Rigidbody.
     /// </summary>
     private void ClimbingMovement()
     {
         rb.velocity = new Vector3(rb.velocity.x, climbSpeed, rb.velocity.z);
     }
     /// <summary>
-    /// Manages small climbing movement by updating the Rigidbody velocity.
+    /// Gestiona el movimiento de escalada pequeña actualizando la velocidad del Rigidbody.
     /// </summary>
     private void SmallClimbingMovement()
     {
         rb.velocity = new Vector3(rb.velocity.x, smallClimbSpeed, rb.velocity.z);
     }
     /// <summary>
-    /// Stops both regular and small climbing actions, resetting relevant flags.
+    /// Detiene tanto las acciones regulares como las de escalada pequeña, restableciendo las banderas relevantes.
     /// </summary>
     private void StopClimbing()
     {

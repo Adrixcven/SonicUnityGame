@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     public Checkpoint checkpoint;
 
     /// <summary>
-    /// Assigns the Rigidbody, Animator, and stops the particle system. Sets initial values for Rigidbody and jumping.
+    /// Asigna Rigidbody, Animator y detiene el sistema de partículas. Establece valores iniciales para Rigidbody y salto.
     /// </summary>
     private void Start()
     {
@@ -72,8 +72,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Called every frame. Handles player input, updates animation parameters, and controls movement speed.
-    /// Also, manages the particle system based on player movement.
+    /// Llamado en cada frame. Maneja la entrada del jugador, actualiza los parámetros de la animación y controla la velocidad de movimiento.
+    /// Además, gestiona el sistema de partículas según el movimiento del jugador.
     /// </summary>
     private void Update()
     {
@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     /// <summary>
-    /// Sets the movement state based on certain conditions.
+    /// Establece el estado de movimiento según ciertas condiciones.
     /// </summary>
     private void StateMachine()
     {
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     /// <summary>
-    /// Called at a fixed rate every physics update. Moves the player based on input.
+    /// Llamado a una tasa fija en cada actualización de físicas. Mueve al jugador según la entrada.
     /// </summary>
     private void FixedUpdate()
     {
@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
     /// <summary>
-    /// Reads player input for movement and jumping.
+    /// Lee la entrada del jugador para el movimiento y el salto.
     /// </summary>
     private void MyInput()
     {
@@ -133,14 +133,14 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
         Vector3 rotationEulerAngles = transform.rotation.eulerAngles;
 
-        // Get the rotation value along the x-axis
+        // Obtener el valor de rotación a lo largo del eje x
         float rotationX = rotationEulerAngles.x;
         float rotationZ = rotationEulerAngles.z;
 
-        // Calculate input direction for rotation
+        // Calcular la dirección de entrada para la rotación
         Vector3 inputDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
 
-        // Rotate the player based on input direction
+        // Rotar al jugador según la dirección de entrada
         if (inputDirection.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
@@ -149,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(rotationX, angle, rotationZ);
         }
 
-        // Handle jumping
+        // Manejar salto
         if (Input.GetKey(jumpkey) && readyToJump && grounded)
         {
 
@@ -164,17 +164,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     /// <summary>
-    /// Moves the player based on input direction and ground state.
+    /// Mueve al jugador según la dirección de entrada y el estado en el suelo.
     /// </summary>
     private void MovePlayer()
     {
-        // calculate movement direction
+        // Calcular la dirección de movimiento
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         sideMoveDirection = orientation.forward * horizontalInput + orientation.right * verticalInput;
         backMoveDirection = orientation.forward * -verticalInput + orientation.right * -horizontalInput;
 
 
-        // Apply forces based on the movement state (on ground or in the air)
+        // Aplicar fuerzas según el estado de movimiento (en el suelo o en el aire)
         if (grounded)
         {
             if (verticalInput < 0)
@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
         }
-        // in air
+        // En el aire
         else if (!grounded)
             if (verticalInput < 0)
                 rb.AddForce(backMoveDirection.normalized * moveSpeed / 2 * 10f, ForceMode.Force);
@@ -206,13 +206,13 @@ public class PlayerMovement : MonoBehaviour
 
     }
     /// <summary>
-    /// Controls the player's movement speed, limiting it if necessary.
+    /// Controla la velocidad de movimiento del jugador, limitándola si es necesario.
     /// </summary>
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        // limit velocity if needed
+        // Limitar la velocidad si es necesario
         if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
@@ -221,25 +221,21 @@ public class PlayerMovement : MonoBehaviour
 
     }
     /// <summary>
-    /// Makes the player jump by applying an upward force.
+    /// Hace que el jugador salte aplicando una fuerza hacia arriba.
     /// </summary>
     private void Jump()
     {
-        // reset y velocity
+        // Reiniciar la velocidad en y
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
     /// <summary>
-    /// Resets the ability to jump after a cooldown period.
+    /// Restablece la capacidad de saltar después de un período de enfriamiento.
     /// </summary>
     private void ResetJump()
     {
         readyToJump = true;
         anim.SetBool("Jumping", false);
     }
-
-
-
-
 }

@@ -8,21 +8,19 @@ public class Loop : MonoBehaviour
     public RaycastHit hit;
     public Quaternion rotation;
     /// <summary>
-    /// Retrieves the parent GameObject and Rigidbody of the entering Collider.
+    /// Obtiene el GameObject padre y el Rigidbody del Collider que entra en la zona de activación.
     /// </summary>
-    /// <param name="other">The Collider entering the trigger zone.</param>
+    /// <param name="other">El Collider que entra en la zona de activación.</param>
     private void OnTriggerEnter(Collider other)
     {
         GameObject enteringObject = other.transform.parent.gameObject;
         Rigidbody rb = enteringObject.GetComponent<Rigidbody>();
-
-
     }
     /// <summary>
-    /// Performs a raycast from the entering object's position downward and adjusts its rotation based on the surface normal.
-    /// Stores the resulting rotation for later use.
+    /// Realiza un raycast desde la posición del objeto que entra hacia abajo y ajusta su rotación basándose en la normal de la superficie.
+    /// Almacena la rotación resultante para su uso posterior.
     /// </summary>
-    /// <param name="other">The Collider staying in the trigger zone.</param>
+    /// <param name="other">El Collider que permanece en la zona de activación.</param>
     private void OnTriggerStay(Collider other)
     {
         GameObject enteringObject = other.transform.parent.gameObject;
@@ -34,10 +32,11 @@ public class Loop : MonoBehaviour
 
     }
     /// <summary>
-    /// Triggered when a Collider exits the trigger zone.
-    /// Retrieves the parent GameObject and Rigidbody of the exiting Collider and restores its rotation.
+    /// Se activa cuando un Collider sale de la zona de activación.
+    /// Obtiene el GameObject padre y el Rigidbody del Collider que sale y restaura su rotación.
     /// </summary>
-    /// <param name="other">The Collider exiting the trigger zone.</param>
+    /// <param name="other">El Collider que sale de la zona de activación.</param>
+
     private void OnTriggerExit(Collider other)
     {
         GameObject enteringObject = other.transform.parent.gameObject;

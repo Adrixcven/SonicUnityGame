@@ -36,14 +36,14 @@ public class GameController : MonoBehaviour
 
     public static GameController instance;
     /// <summary>
-    /// Subscribes to the SceneManager's sceneLoaded event, invoking the OnSceneLoaded method.
+    /// Se suscribe al evento sceneLoaded del SceneManager, invocando el método OnSceneLoaded.
     /// </summary>
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     /// <summary>
-    /// Unsubscribes from the SceneManager's sceneLoaded event to avoid memory leaks.
+    /// Se cancela la suscripción al evento sceneLoaded del SceneManager para evitar pérdidas de memoria.
     /// </summary>
     private void OnDisable()
     {
@@ -51,8 +51,8 @@ public class GameController : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     /// <summary>
-    /// Event handler for the SceneManager's sceneLoaded event.
-    /// Handles actions based on the loaded scene, such as initialization or destruction.
+    /// Manejador de eventos para el evento sceneLoaded del SceneManager.
+    /// Maneja acciones basadas en la escena cargada, como la inicialización o destrucción.
     /// </summary>
     /// <param name="scene"></param>
     /// <param name="mode"></param>
@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
         }
     }
     /// <summary>
-    ///  Ensures that there is only one instance of this script and persists across scenes.
+    /// Asegura que solo haya una instancia de este script y persista a través de las escenas.
     /// </summary>
     public void Awake()
     {
@@ -96,7 +96,7 @@ public class GameController : MonoBehaviour
 
     }
     /// <summary>
-    /// Initializes game variables and updates the UI elements during startup.
+    /// Inicializa las variables del juego y actualiza los elementos de la interfaz de usuario durante el inicio.
     /// </summary>
     public void Start()
     {
@@ -108,7 +108,7 @@ public class GameController : MonoBehaviour
         HUDControl.instance.UpdateScores(score);
     }
     /// <summary>
-    /// Updates the timer, checks for user input to open the pause menu.
+    /// Actualiza el temporizador, verifica la entrada del usuario para abrir el menú de pausa.
     /// </summary>
     private void Update()
     {
@@ -127,14 +127,14 @@ public class GameController : MonoBehaviour
 
     }
     /// <summary>
-    /// Opens or closes the pause menu, controlling time scale and cursor visibility.
+    /// Abre o cierra el menú de pausa, controlando la escala de tiempo y la visibilidad del cursor.
     /// </summary>
     private void ChangeToPause()
     {
         PauseMenu();
     }
     /// <summary>
-    /// Toggles the pause menu, adjusting audio, time scale, and cursor visibility.
+    /// Alterna el menú de pausa, ajustando el audio, la escala de tiempo y la visibilidad del cursor.
     /// </summary>
     public void PauseMenu()
     {
@@ -157,7 +157,7 @@ public class GameController : MonoBehaviour
         HUDControl.instance.ChangeStatesPauseScreen(gamePaused);
     }
     /// <summary>
-    /// Respawns the player at the designated respawn point.
+    /// Respawn al jugador en el punto de respawn designado.
     /// </summary>
     public void Respawn()
     {
@@ -166,28 +166,28 @@ public class GameController : MonoBehaviour
         player.transform.position = respawnPoint.transform.position;
     }
     /// <summary>
-    /// Adds the specified quantity of rings and updates the HUD accordingly.
+    /// Agrega la cantidad especificada de anillos y actualiza el HUD en consecuencia.
     /// </summary>
-    /// <param name="quantity">The quantity of rings to add.</param>
+    /// <param name="quantity">La cantidad de anillos que se agregarán.</param>
     public void AddRings(int quantity)
     {
         rings += quantity;
         HUDControl.instance.UpdateRings(rings);
     }
     /// <summary>
-    /// Adds the specified quantity of lives and updates the HUD accordingly.
+    /// Agrega la cantidad especificada de vidas y actualiza el HUD en consecuencia.
     /// </summary>
-    /// <param name="quantity">The quantity of lives to add.</param>
+    /// <param name="quantity">La cantidad de vidas que se agregarán.</param>
     public void AddLives(int quantity)
     {
         actualLives += quantity;
         HUDControl.instance.UpdateLives(actualLives);
     }
     /// <summary>
-    /// Handles the loss of rings, plays sound effects, and updates the HUD.
-    /// If no rings are left, calls the LoseLives method; otherwise, decreases the ring count.
+    /// Maneja la pérdida de anillos, reproduce efectos de sonido y actualiza el HUD.
+    /// Si no quedan anillos, llama al método LoseLives; de lo contrario, disminuye la cantidad de anillos.
     /// </summary>
-    /// <param name="quantity">The quantity of rings to lose.</param>
+    /// <param name="quantity">La cantidad de anillos que se perderán.</param>
     public void LoseRings(int quantity)
     {
         Animator anim = player.GetComponent<Animator>();
@@ -219,7 +219,7 @@ public class GameController : MonoBehaviour
 
     }
     /// <summary>
-    /// Enables the invincibility state, triggers animation, and schedules invincibility and animation disable routines.
+    /// Habilita el estado de invencibilidad, desencadena la animación y programa rutinas para deshabilitar la invencibilidad y la animación.
     /// </summary>
     public void InvincibleEnabled()
     {
@@ -230,18 +230,18 @@ public class GameController : MonoBehaviour
         StartCoroutine(InvincDisableRoutine());
     }
     /// <summary>
-    /// Coroutine that disables invincibility after a specified cooldown.
+    /// Rutina que deshabilita la invencibilidad después de un enfriamiento especificado.
     /// </summary>
-    /// <returns>Yield instruction for WaitForSeconds.</returns>
+    /// <returns>Instrucción de espera para WaitForSeconds.</returns>
     IEnumerator InvincDisableRoutine()
     {
         yield return new WaitForSeconds(invincibleCooldown);
         invincible = false;
     }
     /// <summary>
-    /// Coroutine that disables the hit animation after a short delay.
+    /// Rutina que deshabilita la animación de golpe después de un breve retraso.
     /// </summary>
-    /// <returns>Yield instruction for WaitForSeconds.</returns>
+    /// <returns>Instrucción de espera para WaitForSeconds.</returns>
     IEnumerator InvincAnimationDisableRoutine()
     {
         Animator anim = player.GetComponent<Animator>();
@@ -250,7 +250,7 @@ public class GameController : MonoBehaviour
 
     }
     /// <summary>
-    /// Toggles the state of the shield and plays corresponding sound effects.
+    /// Alterna el estado del escudo y reproduce efectos de sonido correspondientes.
     /// </summary>
     public void EnableDisableShield()
     {
@@ -262,10 +262,10 @@ public class GameController : MonoBehaviour
             sfxManager.GetComponent<MusicManager>().PlayShieldPopSound();
     }
     /// <summary>
-    /// Handles the loss of lives, plays sound effects, updates the HUD, and triggers death animation.
-    /// If no lives are left, calls the LoseGame method; otherwise, decreases the lives count.
+    /// Maneja la pérdida de vidas, reproduce efectos de sonido, actualiza el HUD y activa la animación de muerte.
+    /// Si no quedan vidas, llama al método LoseGame; de lo contrario, disminuye la cantidad de vidas.
     /// </summary>
-    /// <param name="quantity">The quantity of lives to lose.</param>
+    /// <param name="quantity">La cantidad de vidas que se perderán.</param>
     public void LoseLives(int quantity)
     {
         Animator anim = player.GetComponent<Animator>();
@@ -282,16 +282,16 @@ public class GameController : MonoBehaviour
 
     }
     /// <summary>
-    /// Coroutine for delayed respawn after a short delay.
+    /// Rutina de respawn demorado después de un breve retraso.
     /// </summary>
-    /// <returns>Yield instruction for WaitForSeconds.</returns>
+    /// <returns>Instrucción de espera para WaitForSeconds.</returns>
     public IEnumerator DelayedRespawnRoutine()
     {
         yield return new WaitForSeconds(0.1f);
         Respawn();
     }
     /// <summary>
-    /// Adds points to the score for defeating an enemy.
+    /// Agrega puntos al puntaje por derrotar a un enemigo.
     /// </summary>
     public void AddPointsEnemy()
     {
@@ -299,7 +299,7 @@ public class GameController : MonoBehaviour
         HUDControl.instance.UpdateScores(score);
     }
     /// <summary>
-    /// Adds points to the score for collecting a ring.
+    /// Agrega puntos al puntaje por recoger un anillo.
     /// </summary>
     public void AddPointsRing()
     {
@@ -308,8 +308,8 @@ public class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// Calculates bonus points based on rings collected and time taken,
-    /// updates the HUD with bonus values, and updates the end-of-level score.
+    /// Calcula puntos de bonificación según los anillos recogidos y el tiempo transcurrido,
+    /// actualiza el HUD con valores de bonificación y el puntaje al final del nivel.
     /// </summary>
     public void CalculateBonus()
     {
@@ -321,10 +321,10 @@ public class GameController : MonoBehaviour
         HUDControl.instance.UpdateEndScores(score);
     }
     /// <summary>
-    /// Gets the reward points based on the total time taken.
+    /// Obtiene los puntos de recompensa basados en el tiempo total transcurrido.
     /// </summary>
-    /// <param name="totalSeconds">The total time taken in seconds.</param>
-    /// <returns>The reward points based on the total time taken.</returns>
+    /// <param name="totalSeconds">El tiempo total transcurrido en segundos.</param>
+    /// <returns>Los puntos de recompensa basados en el tiempo total transcurrido.</returns>
     private static int GetReward(int totalSeconds)
     {
         if (totalSeconds <= 44)
@@ -345,14 +345,14 @@ public class GameController : MonoBehaviour
             return 0;
     }
     /// <summary>
-    /// Adds ring and time bonus points to the score continuously until both are zero,
-    /// playing a score-up sound for each increment.
+    /// Agrega puntos de bonificación de anillos y tiempo al puntaje continuamente hasta que ambos sean cero,
+    /// reproduciendo un sonido de aumento de puntaje por cada incremento.
     /// </summary>
     public void BonusInScore()
     {
         while (ringBonus > 0 || timeBonus > 0)
         {
-            // Decrement num1 and num2, and accumulate the decremented values
+            // Reduce ringBonus y timeBonus, y acumula los valores reducidos
             if (ringBonus > 0)
             {
                 sfxManager.GetComponent<MusicManager>().PlayScoreUpSound();
@@ -379,14 +379,11 @@ public class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// Displays the game over screen and logs a message.
+    /// Muestra la pantalla de fin de juego y registra un mensaje.
     /// </summary>
     private void LoseGame()
     {
         HUDControl.instance.OnGameOver();
         Debug.Log("Game Over");
     }
-
-
-
 }

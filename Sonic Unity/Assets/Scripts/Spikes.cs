@@ -6,17 +6,17 @@ public class Spikes : MonoBehaviour
 {
     public GameController gameController;
     /// <summary>
-    /// Assigns the GameController component from a GameObject with the tag "GC" to the local variable.
+    /// Asigna el componente GameController de un GameObject con la etiqueta "GC" a la variable local.
     /// </summary>
     private void Awake()
     {
         gameController = GameObject.FindGameObjectWithTag("GC").GetComponent<GameController>();
     }
     /// <summary>
-    /// Checks for the presence of a parent object, and if it's a player, performs actions
-    /// based on the current game difficulty, such as decrementing rings in the GameController.
+    /// Verifica la presencia de un objeto padre y, si es un jugador, realiza acciones
+    /// basadas en la dificultad actual del juego, como decrementar anillos en el GameController.
     /// </summary>
-    /// <param name="other">The Collider entering the trigger zone.</param>
+    /// <param name="other">El Collider que entra en la zona de activación.</param>
     private void OnTriggerEnter(Collider other)
     {
         GameObject enteringObject = other.transform.parent.gameObject;

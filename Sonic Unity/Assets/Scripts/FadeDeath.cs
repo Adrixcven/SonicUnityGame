@@ -6,15 +6,15 @@ public class FadeDeath : MonoBehaviour
 {
     public GameController gameController;
     /// <summary>
-    /// Assigns the GameController component by finding a GameObject with the tag "GC".
+    /// Asigna el componente GameController encontrando un GameObject con la etiqueta "GC".
     /// </summary>
     private void Awake()
     {
         gameController = GameObject.FindGameObjectWithTag("GC").GetComponent<GameController>();
     }
     /// <summary>
-    /// Initiates a fade death function, triggering a delayed respawn routine in the GameController,
-    /// and playing a "FadeOff" animation on the current GameObject.
+    /// Inicia una función de muerte por desvanecimiento, activando una rutina de reaparición con retraso en el GameController,
+    /// y reproduciendo una animación "FadeOff" en el GameObject actual.
     /// </summary>
     public void FadeDeathFunction()
     {
@@ -22,7 +22,7 @@ public class FadeDeath : MonoBehaviour
         gameObject.GetComponent<Animation>().Play("FadeOff");
     }
     /// <summary>
-    /// Disables the GameObject by setting its active state to false
+    /// Desactiva el GameObject estableciendo su estado activo como falso.
     /// </summary>
     public void Disable()
     {

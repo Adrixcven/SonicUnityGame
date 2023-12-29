@@ -26,7 +26,7 @@ public class EnemyFlying : MonoBehaviour
     public AudioSource enemyHitted;
     public GameObject projectile;
     /// <summary>
-    /// Initializes references to the GameController, player, NavMeshAgent, and Animator components.
+    /// Inicializa las referencias al GameController, jugador, NavMeshAgent y Animator.
     /// </summary>
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class EnemyFlying : MonoBehaviour
         anim = GetComponent<Animator>();
     }
     /// <summary>
-    /// Configures the initial state of the enemy based on the current game difficulty.
+    /// Configura el estado inicial del enemigo basado en la dificultad actual del juego.
     /// </summary>
     private void Start()
     {
@@ -52,7 +52,7 @@ public class EnemyFlying : MonoBehaviour
             gameObject.SetActive(true);
     }
     /// <summary>
-    /// Checks for player presence within sight and attack ranges and triggers corresponding behaviors.
+    /// Verifica la presencia del jugador dentro de los rangos de visión y ataque y desencadena los comportamientos correspondientes.
     /// </summary>
     private void Update()
     {
@@ -66,7 +66,7 @@ public class EnemyFlying : MonoBehaviour
 
     }
     /// <summary>
-    /// Handles patrolling behavior, moving to a randomly selected walk point.
+    /// Maneja el comportamiento de patrulla, moviéndose hacia un punto de caminata seleccionado al azar.
     /// </summary>
     private void Patroling()
     {
@@ -85,7 +85,7 @@ public class EnemyFlying : MonoBehaviour
 
     }
     /// <summary>
-    /// Searches for a random walk point within the specified range and sets it as the destination.
+    /// Busca un punto de caminata aleatorio dentro del rango especificado y lo establece como destino.
     /// </summary>
     private void SearchWalkPoint()
     {
@@ -101,14 +101,14 @@ public class EnemyFlying : MonoBehaviour
             walkPointSet = true;
     }
     /// <summary>
-    /// Sets the destination to the player's position for chasing behavior.
+    /// Establece el destino a la posición del jugador para el comportamiento de persecución.
     /// </summary>
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
     }
     /// <summary>
-    /// Initiates the attack behavior, shooting projectiles at the player.
+    /// Inicia el comportamiento de ataque, disparando proyectiles al jugador.
     /// </summary>
     private void AttackPlayer()
     {
@@ -128,14 +128,14 @@ public class EnemyFlying : MonoBehaviour
         }
     }
     /// <summary>
-    /// Resets the attack state after the specified time interval.
+    /// Restablece el estado de ataque después del intervalo de tiempo especificado.
     /// </summary>
     private void ResetAttack()
     {
         alreadyAttacked = false;
     }
     /// <summary>
-    ///  Handles collision events with the player, applying damage and handling shield mechanics.
+    /// Maneja eventos de colisión con el jugador, aplica daño y maneja la mecánica del escudo.
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
@@ -177,7 +177,7 @@ public class EnemyFlying : MonoBehaviour
         }
     }
     /// <summary>
-    ///  Initiates the enemy taking damage sequence, playing the appropriate animations and sound.
+    /// Inicia la secuencia de recibir daño por parte del enemigo, reproduciendo las animaciones y sonidos apropiados.
     /// </summary>
     public void TakeDamage()
     {
@@ -187,8 +187,8 @@ public class EnemyFlying : MonoBehaviour
         StartCoroutine(EnemyDeadRoutine());
     }
     /// <summary>
-    /// Coroutine for handling the enemy's death sequence, including a delay before destruction.
-    /// Adds points to the GameController upon enemy's death.
+    /// Rutina para manejar la secuencia de muerte del enemigo, incluido un retraso antes de la destrucción.
+    /// Agrega puntos al GameController al morir el enemigo.
     /// </summary>
     /// <returns></returns>
     IEnumerator EnemyDeadRoutine()

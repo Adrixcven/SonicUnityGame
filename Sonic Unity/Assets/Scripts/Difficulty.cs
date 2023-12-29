@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Class for the difficulty methods.
-/// </summary>
+
 public class Difficulty : MonoBehaviour
 {
     public static Difficulty instance;
 
     public int currentDifficulty = 1;
     /// <summary>
-    ///  Ensures that there is only one instance of this object by checking for an existing instance and, if it doesn't exist, marks the object to persist across scene loads.
+    /// Asegura que solo haya una instancia de este objeto revisando si ya existe una instancia.
+    /// Si no existe, marca el objeto para que persista a través de cambios de escena.
     /// </summary>
     private void Awake()
     {
@@ -26,9 +25,9 @@ public class Difficulty : MonoBehaviour
         }
     }
     /// <summary>
-    /// Sets the difficulty level to the specified value.
+    /// Establece el nivel de dificultad al valor especificado.
     /// </summary>
-    /// <param name="num"></param>
+    /// <param name="num">Número que representa el nuevo nivel de dificultad.</param>
     public void SetDifficulty(int num)
     {
         currentDifficulty = num;

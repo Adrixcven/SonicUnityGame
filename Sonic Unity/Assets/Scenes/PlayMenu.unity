@@ -290,6 +290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ringsLost: {fileID: 0}
+  ringsGot: {fileID: 0}
+  lifeUp: {fileID: 0}
   lifeDown: {fileID: 0}
   scoreUpSound: {fileID: 0}
   scoreTotalSound: {fileID: 0}

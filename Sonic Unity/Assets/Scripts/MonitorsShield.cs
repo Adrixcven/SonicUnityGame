@@ -9,7 +9,7 @@ public class MonitorsShield : MonoBehaviour
     public ParticleSystem particleSystem;
 
     /// <summary>
-    /// Assigns the GameController by finding a GameObject with the tag "GC".
+    /// Asigna el GameController encontrando un objeto con la etiqueta "GC".
     /// </summary>
     void Start()
     {
@@ -18,10 +18,10 @@ public class MonitorsShield : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks the collided object, and if it's a player not grounded, performs actions
-    /// such as enabling/disabling shields, applying upward force, playing particle effects, and deactivating the current object.
+    /// Verifica el objeto colisionado y, si es un jugador no en el suelo, realiza acciones
+    /// como habilitar/deshabilitar escudos, aplicar fuerza hacia arriba, reproducir efectos de partículas y desactivar el objeto actual.
     /// </summary>
-    /// <param name="collision">Information about the collision.</param>
+    /// <param name="collision">Información sobre la colisión.</param>
     private void OnCollisionEnter(Collision collision)
     {
         GameObject enteringObject = collision.gameObject;

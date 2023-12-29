@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Class for the checkpoint methods.
-/// </summary>
 public class Checkpoint : MonoBehaviour
 {
     public AudioSource checkpointSound;
     private GameController gc;
 
     /// <summary>
-    /// When waking up, the object looks for a GameObject with the "GC" tag and, if found, stores the GameController component in a variable.
+    /// Al despertar, el objeto busca un GameObject con la etiqueta "GC" y, si se encuentra, almacena el componente GameController en una variable.
     /// </summary>
     void Awake()
     {
@@ -31,7 +28,7 @@ public class Checkpoint : MonoBehaviour
     }
 
     /// <summary>
-    /// When the parent of the collider has the tag "Player", if the respawnPoint in GameController is not this object, it changes to this object.
+    ///  Cuando el padre del colisionador tiene la etiqueta "Player", si el punto de reaparición en GameController no es este objeto, cambia a este objeto.
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
@@ -47,5 +44,4 @@ public class Checkpoint : MonoBehaviour
 
         }
     }
-
 }

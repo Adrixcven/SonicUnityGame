@@ -8,10 +8,9 @@ public class Ring : MonoBehaviour
     public GameObject gameController;
     public GameObject sfxManager;
 
-    // Update is called once per frame
-
     /// <summary>
-    /// Assigns the GameController by finding a GameObject with the tag "GC".
+    /// Asigna el GameController encontrando un GameObject con la etiqueta "GC".
+    /// </summary>
     /// </summary>
     void Start()
     {
@@ -19,17 +18,17 @@ public class Ring : MonoBehaviour
         sfxManager = GameObject.FindGameObjectWithTag("SFX");
     }
     /// <summary>
-    /// Rotates the object around the Y-axis.
+    /// Rota el objeto alrededor del eje Y.
     /// </summary>
     void Update()
     {
         transform.Rotate(new Vector3(0f, 1f, 0f));
     }
-    /// <summary>
-    /// Checks if the entering object is a player, and if so, performs actions
-    /// such as adding rings, points, playing sounds, and updating lives in the GameController.
+     /// <summary>
+    /// Verifica si el objeto que entra es un jugador y, si es así, realiza acciones
+    /// como agregar anillos, puntos, reproducir sonidos y actualizar vidas en GameController.
     /// </summary>
-    /// <param name="other">The Collider entering the trigger zone.</param>
+    /// <param name="other">El Collider que entra en la zona de activación.</param>
     private void OnTriggerEnter(Collider other)
     {
         GameObject enteringObject = other.transform.parent.gameObject;

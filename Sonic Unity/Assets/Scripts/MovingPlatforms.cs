@@ -17,15 +17,14 @@ public class MovingPlatforms : MonoBehaviour
     private float elapsedTime;
 
     /// <summary>
-    /// Targets the next waypoint for movement.
+    /// Inicializa el movimiento de la plataforma al apuntar al siguiente waypoint.
     /// </summary>
     void Start()
     {
         TargetNextWaypoint();
     }
-
     /// <summary>
-    /// Called at a fixed rate, updates the object's position along the waypoint path.
+    /// Mueve la plataforma entre waypoints de manera suave, actualizando la posición en cada fixed frame.
     /// </summary>
     void FixedUpdate()
     {
@@ -41,7 +40,7 @@ public class MovingPlatforms : MonoBehaviour
         }
     }
     /// <summary>
-    /// Sets the next waypoint as the target for movement.
+    /// Selecciona el siguiente waypoint para el movimiento de la plataforma.
     /// </summary>
     private void TargetNextWaypoint()
     {
@@ -55,19 +54,16 @@ public class MovingPlatforms : MonoBehaviour
         timeToWaypoint = distanceToWaypoint / speed;
     }
     /// <summary>
-    /// Attaches the parent of the colliding object to the current object.
+    /// Activa el efecto de "padre" al entrar en el área de colisión.
     /// </summary>
-    /// <param name="other">The Collider entering the trigger zone.</param>
     private void OnTriggerEnter(Collider other)
     {
         other.transform.parent.transform.SetParent(transform);
     }
-    /// <summary>
-    /// Triggered when a Collider exits the trigger zone.
-    /// Detaches the parent of the colliding object from the current object.
+     /// <summary>
+    /// Desactiva el efecto de "padre" al salir del área de colisión.
     /// </summary>
-    /// <param name="other">The Collider exiting the trigger zone.</param>
-    private void OnTriggerExit(Collider other)
+        private void OnTriggerExit(Collider other)
     {
         other.transform.parent.transform.SetParent(null);
     }

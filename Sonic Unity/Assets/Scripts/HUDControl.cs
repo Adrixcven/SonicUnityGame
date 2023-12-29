@@ -36,7 +36,7 @@ public class HUDControl : MonoBehaviour
 
     public static HUDControl instance;
     /// <summary>
-    /// Initializes the singleton instance and finds the SFXManager GameObject by tag.
+    /// Inicializa la instancia única y encuentra el objeto SFXManager por etiqueta.
     /// </summary>
     private void Awake()
     {
@@ -44,49 +44,49 @@ public class HUDControl : MonoBehaviour
         sfxManager = GameObject.FindGameObjectWithTag("SFX");
     }
     /// <summary>
-    /// Updates the displayed lives count.
+    /// Actualiza el contador de vidas mostrado.
     /// </summary>
-    /// <param name="lives">The number of lives to display.</param>
+    /// <param name="lives">El número de vidas para mostrar.</param>
     public void UpdateLives(int lives)
     {
         livesText.text = lives.ToString();
     }
     /// <summary>
-    /// Updates the displayed ring count.
+    /// Actualiza el contador de anillos mostrado.
     /// </summary>
-    /// <param name="rings">The number of rings to display.</param>
+    /// <param name="rings">El número de anillos para mostrar.</param>
     public void UpdateRings(int rings)
     {
         ringText.text = rings.ToString("000");
     }
     /// <summary>
-    /// Updates the displayed score count.
+    /// Actualiza el contador de puntuación mostrado.
     /// </summary>
-    /// <param name="score">The score to display.</param>
+    /// <param name="score">La puntuación a mostrar.</param>
     public void UpdateScores(int score)
     {
         scoreText.text = score.ToString("000000");
     }
     /// <summary>
-    /// Updates the displayed time.
+    /// Actualiza el tiempo mostrado.
     /// </summary>
-    /// <param name="time">The time to display.</param>
+    /// <param name="time">El tiempo a mostrar.</param>
     public void UpdateTimes(string Time)
     {
         timeText.text = Time;
     }
     /// <summary>
-    /// Updates the end-level score display.
+    /// Actualiza la pantalla de puntuación al finalizar el nivel.
     /// </summary>
-    /// <param name="score">The end-level score to display.</param>
+    /// <param name="score">La puntuación al finalizar el nivel.</param>
     public void UpdateEndScores(int score)
     {
         endScoreText.text = score.ToString("000000");
     }
     /// <summary>
-    /// Updates the end-level text based on the scene ID.
+    /// Actualiza el texto al finalizar el nivel según la identificación de la escena.
     /// </summary>
-    /// <param name="scene">The scene ID.</param>
+    /// <param name="scene">La identificación de la escena.</param>
     public void UpdateEndLevelText(int scene)
     {
         if (scene == 4)
@@ -95,40 +95,40 @@ public class HUDControl : MonoBehaviour
             endLevelText.text = "Sonic got throught Act 1";
     }
     /// <summary>
-    /// Updates the time bonus display.
+    /// Actualiza la visualización del bono de tiempo.
     /// </summary>
-    /// <param name="timeBonus">The time bonus to display.</param>
+    /// <param name="timeBonus">El bono de tiempo a mostrar.</param>
     public void UpdateTimeBonus(int TimeBonus)
     {
         endTimeBonusText.text = TimeBonus.ToString();
     }
     /// <summary>
-    /// Updates the ring bonus display.
+    /// Actualiza la visualización del bono de anillos.
     /// </summary>
-    /// <param name="ringBonus">The ring bonus to display.</param>
+    /// <param name="ringBonus">El bono de anillos a mostrar.</param>
     public void UpdateRingBonus(int RingBonus)
     {
         endRingsBonusText.text = RingBonus.ToString();
     }
 
     /// <summary>
-    /// Changes the visibility of the pause screen.
+    /// Cambia la visibilidad de la pantalla de pausa.
     /// </summary>
-    /// <param name="pause">True to activate the pause screen, false to deactivate.</param>
+    /// <param name="pause">True para activar la pantalla de pausa, false para desactivarla.</param>
     public void ChangeStatesPauseScreen(bool pause)
     {
         pauseScreen.SetActive(pause);
     }
     /// <summary>
-    /// Changes the visibility of the end score screen.
+    /// Cambia la visibilidad de la pantalla de puntuación final.
     /// </summary>
-    /// <param name="ended">True to activate the end score screen, false to deactivate.</param>
+    /// <param name="ended">True para activar la pantalla de puntuación final, false para desactivarla.</param>
     public void ChangeStatesEndScoreScreen(bool ended)
     {
         endScoreScreen.SetActive(ended);
     }
     /// <summary>
-    /// Locks the cursor, hides it, and invokes the PauseMenu method from the GameController instance.
+    /// Bloquea el cursor, lo oculta e invoca el método PauseMenu de la instancia GameController.
     /// </summary>
     public void OnButtonContinue()
     {
@@ -138,14 +138,14 @@ public class HUDControl : MonoBehaviour
 
     }
     /// <summary>
-    /// Reloads the current scene.
+    /// Recarga la escena actual.
     /// </summary>
     public void OnButtonRestart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     /// <summary>
-    /// Loads the "Menu" scene.
+    /// Carga la escena "Menu".
     /// </summary>
     public void OnButtonExit()
     {
@@ -153,7 +153,7 @@ public class HUDControl : MonoBehaviour
         Debug.Log("Funciona");
     }
     /// <summary>
-    /// Loads the "PlayMenu" scene.
+    /// Carga la escena "PlayMenu".
     /// </summary>
     public void OnButtonBeginning()
     {
@@ -161,7 +161,7 @@ public class HUDControl : MonoBehaviour
         Debug.Log("Funciona");
     }
     /// <summary>
-    /// Loads the "OptionsMenu" scene.
+    /// Carga la escena "OptionsMenu".
     /// </summary>
     public void OnButtonOptions()
     {
@@ -169,7 +169,7 @@ public class HUDControl : MonoBehaviour
         Debug.Log("Funciona");
     }
     /// <summary>
-    /// Quits the application.
+    /// Cierra la aplicación.
     /// </summary>
     public void OnButtonExitGame()
     {
@@ -177,7 +177,7 @@ public class HUDControl : MonoBehaviour
         Debug.Log("Funciona");
     }
     /// <summary>
-    /// Activates a fade screen, sets the difficulty, and loads the specified level after a delay.
+    /// Activa una pantalla de transición, establece la dificultad y carga el nivel especificado después de un retraso.
     /// </summary>
     public void OnButtonOriginalMode()
     {
@@ -188,7 +188,7 @@ public class HUDControl : MonoBehaviour
         Debug.Log("Funciona Original");
     }
     /// <summary>
-    /// Activates a fade screen, sets the difficulty, and loads the specified level after a delay.
+    /// Activa una pantalla de transición, establece la dificultad y carga el nivel especificado después de un retraso.
     /// </summary>
     public void OnButtonModernMode()
     {
@@ -199,9 +199,9 @@ public class HUDControl : MonoBehaviour
         Debug.Log("Funciona Moder");
     }
     /// <summary>
-    /// Initiates the loading of the next level with a fade screen and delay.
+    /// Inicia la carga del próximo nivel con una pantalla de transición y un retraso.
     /// </summary>
-    /// <param name="id">The scene ID of the next level.</param>
+    /// <param name="id">La identificación de la escena del próximo nivel.</param>
     public void NextLevel(int id)
     {
         fadeScreen.SetActive(true);
@@ -209,9 +209,9 @@ public class HUDControl : MonoBehaviour
         StartCoroutine(LoadLevel(id));
     }
     /// <summary>
-    /// Coroutine to load a level with a delay and display a loading screen.
+    /// Rutina para cargar un nivel con un retraso y mostrar una pantalla de carga.
     /// </summary>
-    /// <param name="id">The scene ID of the level to load.</param>
+    /// <param name="id">La identificación de la escena del nivel a cargar.</param>
     IEnumerator LoadLevel(int id)
     {
         yield return new WaitForSeconds(1);
@@ -235,7 +235,7 @@ public class HUDControl : MonoBehaviour
         Cursor.visible = true;
     }
     /// <summary>
-    /// Initiates a fade screen animation for death or respawn.
+    /// Inicia una animación de pantalla de transición para la muerte o reaparición.
     /// </summary>
     public void DeathFade()
     {
@@ -244,12 +244,11 @@ public class HUDControl : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles the game over scenario by loading the "GameOver" scene.
+    /// Maneja el escenario de fin de juego cargando la escena "GameOver".
     /// </summary>
     public void OnGameOver()
     {
         SceneManager.LoadScene("GameOver");
         Debug.Log("Funciona");
     }
-
 }
