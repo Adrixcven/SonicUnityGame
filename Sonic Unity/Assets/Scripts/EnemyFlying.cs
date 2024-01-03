@@ -119,7 +119,7 @@ public class EnemyFlying : MonoBehaviour
         {
 
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 3f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 5f, ForceMode.Impulse);
             rb.AddForce(transform.up * 0f, ForceMode.Impulse);
 
             alreadyAttacked = true;

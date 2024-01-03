@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971eebe32f9c2a54e98bc1596fffbeef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RB: {fileID: 3779582064858105051}
+  rb: {fileID: 3779582064858105051}
   gameController: {fileID: 0}
   useGravity: 0
   maxLifetime: 5

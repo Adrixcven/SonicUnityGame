@@ -22,15 +22,20 @@ public class Spikes : MonoBehaviour
         GameObject enteringObject = other.transform.parent.gameObject;
         if (enteringObject.CompareTag("Player"))
         {
-            if (Difficulty.instance.currentDifficulty == 0)
-                gameController.GetComponent<GameController>().LoseRings(gameController.GetComponent<GameController>().rings);
-            else
+            if (!gameController.GetComponent<GameController>().shieldOn)
             {
-                if (gameController.GetComponent<GameController>().rings < 10)
+                if (Difficulty.instance.currentDifficulty == 0)
                     gameController.GetComponent<GameController>().LoseRings(gameController.GetComponent<GameController>().rings);
                 else
-                    gameController.GetComponent<GameController>().LoseRings(10);
+                {
+                    if (gameController.GetComponent<GameController>().rings < 10)
+                        gameController.GetComponent<GameController>().LoseRings(gameController.GetComponent<GameController>().rings);
+                    else
+                        gameController.GetComponent<GameController>().LoseRings(10);
+                }
             }
+            else
+                gameController.GetComponent<GameController>().EnableDisableShield();
         }
     }
 }

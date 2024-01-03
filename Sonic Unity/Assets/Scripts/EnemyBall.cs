@@ -78,7 +78,6 @@ public class EnemyBall : MonoBehaviour
 
         GetComponent<SphereCollider>().material = physicMaterial;
 
-        rb.useGravity = useGravity;
     }
 }
 

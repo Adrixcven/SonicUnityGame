@@ -362,7 +362,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 062888b89aec5544fbaf9cd6a7817c33, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!95 &533368270
@@ -1366,7 +1366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 496518992738032625, guid: 624374ae2d3ff8f43a92d2888ccd33f1, type: 3}
       propertyPath: minLoadTime
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 496518992738032625, guid: 624374ae2d3ff8f43a92d2888ccd33f1, type: 3}
       propertyPath: CurrentScreen

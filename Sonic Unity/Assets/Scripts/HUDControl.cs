@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -181,10 +182,8 @@ public class HUDControl : MonoBehaviour
     /// </summary>
     public void OnButtonOriginalMode()
     {
-        fadeScreen.SetActive(true);
-        fadeScreen.GetComponent<Animation>().Play("FadeAnim");
         Difficulty.instance.SetDifficulty(0);
-        StartCoroutine(LoadLevel(3));
+        NextLevel(3);
         Debug.Log("Funciona Original");
     }
     /// <summary>
@@ -192,10 +191,8 @@ public class HUDControl : MonoBehaviour
     /// </summary>
     public void OnButtonModernMode()
     {
-        fadeScreen.SetActive(true);
-        fadeScreen.GetComponent<Animation>().Play("FadeAnim");
         Difficulty.instance.SetDifficulty(1);
-        StartCoroutine(LoadLevel(3));
+        NextLevel(3);
         Debug.Log("Funciona Moder");
     }
     /// <summary>
@@ -206,30 +203,34 @@ public class HUDControl : MonoBehaviour
     {
         fadeScreen.SetActive(true);
         fadeScreen.GetComponent<Animation>().Play("FadeAnim");
-        StartCoroutine(LoadLevel(id));
+        LoadLevel(id);
     }
     /// <summary>
-    /// Rutina para cargar un nivel con un retraso y mostrar una pantalla de carga.
+    /// Carga asincrónicamente una escena de Unity con el ID especificado, mostrando una pantalla de carga durante el proceso.
+    /// Este método incluye una demora, asegura un tiempo de carga mínimo y gestiona la visibilidad del cursor.
     /// </summary>
     /// <param name="id">La identificación de la escena del nivel a cargar.</param>
-    IEnumerator LoadLevel(int id)
+    
+    public async void LoadLevel(int id)
     {
-        yield return new WaitForSeconds(1);
+        await Task.Delay(1000);
+        
         AsyncOperation operation = SceneManager.LoadSceneAsync(id);
         float elapsedLoadTime = 0f;
 
         currentScreen.SetActive(false);
         loadingScreen.SetActive(true);
+        
         while (!operation.isDone)
         {
             elapsedLoadTime += Time.deltaTime;
-            yield return null;
+            await Task.Yield();
         }
 
         while (elapsedLoadTime < minLoadTime)
         {
             elapsedLoadTime += Time.deltaTime;
-            yield return null;
+            await Task.Yield();
         }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

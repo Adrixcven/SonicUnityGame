@@ -24,25 +24,29 @@ public class Ring : MonoBehaviour
     {
         transform.Rotate(new Vector3(0f, 1f, 0f));
     }
-     /// <summary>
+    /// <summary>
     /// Verifica si el objeto que entra es un jugador y, si es así, realiza acciones
     /// como agregar anillos, puntos, reproducir sonidos y actualizar vidas en GameController.
     /// </summary>
     /// <param name="other">El Collider que entra en la zona de activación.</param>
     private void OnTriggerEnter(Collider other)
     {
-        GameObject enteringObject = other.transform.parent.gameObject;
-        if (enteringObject.CompareTag("Player"))
+        if (other.transform.parent.gameObject != null)
         {
-            gameController.GetComponent<GameController>().AddRings(1);
-            gameController.GetComponent<GameController>().AddPointsRing();
-            sfxManager.GetComponent<MusicManager>().PlayRingsGot();
-            if (gameController.GetComponent<GameController>().rings % 100 == 0)
+            GameObject enteringObject = other.transform.parent.gameObject;
+            if (enteringObject.CompareTag("Player"))
             {
-                gameController.GetComponent<GameController>().AddLives(1);
-                sfxManager.GetComponent<MusicManager>().PlayLifeUp();
+                gameController.GetComponent<GameController>().AddRings(1);
+                gameController.GetComponent<GameController>().AddPointsRing();
+                sfxManager.GetComponent<MusicManager>().PlayRingsGot();
+                if (gameController.GetComponent<GameController>().rings % 100 == 0)
+                {
+                    gameController.GetComponent<GameController>().AddLives(1);
+                    sfxManager.GetComponent<MusicManager>().PlayLifeUp();
+                }
+                gameObject.SetActive(false);
             }
-            gameObject.SetActive(false);
         }
+
     }
 }
