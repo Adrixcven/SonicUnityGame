@@ -150,6 +150,8 @@ public class HUDControl : MonoBehaviour
     /// </summary>
     public void OnButtonExit()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene("Menu");
         Debug.Log("Funciona");
     }
@@ -232,8 +234,7 @@ public class HUDControl : MonoBehaviour
             elapsedLoadTime += Time.deltaTime;
             await Task.Yield();
         }
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        
     }
     /// <summary>
     /// Inicia una animación de pantalla de transición para la muerte o reaparición.
