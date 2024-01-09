@@ -30,11 +30,14 @@ public class MonitorsShield : MonoBehaviour
         {
             if (!player.GetComponent<PlayerMovement>().grounded)
             {
-                gameController.GetComponent<GameController>().EnableDisableShield();
-                Vector3 upwardForce = Vector3.up * 1f;
-                rb.AddForce(upwardForce, ForceMode.Impulse);
-                particleSystem.Play();
-                gameObject.SetActive(false);
+                if (!gameController.GetComponent<GameController>().shieldOn)
+                {
+                    gameController.GetComponent<GameController>().EnableDisableShield();
+                    Vector3 upwardForce = Vector3.up * 1f;
+                    rb.AddForce(upwardForce, ForceMode.Impulse);
+                    particleSystem.Play();
+                    gameObject.SetActive(false);
+                }
             }
         }
     }

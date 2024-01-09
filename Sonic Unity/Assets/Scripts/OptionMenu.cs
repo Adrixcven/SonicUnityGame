@@ -11,8 +11,8 @@ public class OptionMenu : MonoBehaviour
     private int selectedRes;
     public TMP_Text resolutionTXT;
     /// <summary>
-    /// Checks if the current screen resolution matches any stored resolutions.
-    /// If found, updates the selected resolution; otherwise, adds the current resolution to the list.
+    /// Comprueba si la resolución actual de la pantalla coincide con alguna resolución almacenada.
+    /// Si se encuentra, actualiza la resolución seleccionada; de lo contrario, agrega la resolución actual a la lista.
     /// </summary>
     public void Start()
     {
@@ -39,7 +39,7 @@ public class OptionMenu : MonoBehaviour
         }
     }
     /// <summary>
-    /// Toggles fullscreen mode and updates the screen resolution accordingly.
+    /// Cambia entre el modo de pantalla completa y actualiza la resolución de la pantalla en consecuencia.
     /// </summary>
     public void OnToggleFullscreen()
     {
@@ -48,8 +48,8 @@ public class OptionMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Decreases the selected resolution index and updates UI and screen resolution.
-    /// Ensures that the index does not go below zero.
+    /// Disminuye el índice de la resolución seleccionada y actualiza la interfaz de usuario y la resolución de la pantalla.
+    /// Asegura que el índice no sea inferior a cero.
     /// </summary>
     public void ResLeft()
     {
@@ -63,8 +63,8 @@ public class OptionMenu : MonoBehaviour
         Screen.SetResolution(resolutions[selectedRes].horizontal, resolutions[selectedRes].vertical, fullscreenTog.isOn);
     }
     /// <summary>
-    /// Increases the selected resolution index and updates UI and screen resolution.
-    /// Ensures that the index does not exceed the maximum available resolutions.
+    /// Aumenta el índice de la resolución seleccionada y actualiza la interfaz de usuario y la resolución de la pantalla.
+    /// Asegura que el índice no supere el máximo de resoluciones disponibles.
     /// </summary>
     public void ResRight()
     {
@@ -77,13 +77,16 @@ public class OptionMenu : MonoBehaviour
         Screen.SetResolution(resolutions[selectedRes].horizontal, resolutions[selectedRes].vertical, fullscreenTog.isOn);
     }
     /// <summary>
-    /// Updates the resolution display text based on the currently selected resolution.
+    /// Actualiza el texto de visualización de la resolución según la resolución actualmente seleccionada.
     /// </summary>
     public void UpdateResTXT()
     {
         resolutionTXT.text = resolutions[selectedRes].horizontal.ToString() + " x " + resolutions[selectedRes].vertical.ToString();
     }
 }
+/// <summary>
+/// Resolución del Item
+/// </summary>
 [System.Serializable]
 public class resItem
 {
