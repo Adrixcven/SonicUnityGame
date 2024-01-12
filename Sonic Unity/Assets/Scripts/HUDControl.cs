@@ -136,7 +136,6 @@ public class HUDControl : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         GameController.instance.PauseMenu();
-
     }
     /// <summary>
     /// Recarga la escena actual.

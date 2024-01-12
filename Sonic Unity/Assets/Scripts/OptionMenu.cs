@@ -2,14 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class OptionMenu : MonoBehaviour
 {
+    private static OptionMenu instance;
     public Toggle fullscreenTog;
     public List<resItem> resolutions = new List<resItem>();
     private int selectedRes;
     public TMP_Text resolutionTXT;
+    /// <summary>
+    /// Configura el patrón singleton para garantizar que solo exista una instancia en todas las escenas.
+    /// </summary>
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     /// <summary>
     /// Comprueba si la resolución actual de la pantalla coincide con alguna resolución almacenada.
     /// Si se encuentra, actualiza la resolución seleccionada; de lo contrario, agrega la resolución actual a la lista.
@@ -18,12 +35,12 @@ public class OptionMenu : MonoBehaviour
     {
         fullscreenTog.isOn = Screen.fullScreen;
         bool foundRes = false;
+        
         for (int i = 0; i < resolutions.Count; i++)
         {
             if (Screen.width == resolutions[i].horizontal && Screen.height == resolutions[i].vertical)
             {
                 foundRes = true;
-
                 selectedRes = i;
                 UpdateResTXT();
             }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -129,7 +130,7 @@ public class GameController : MonoBehaviour
     /// <summary>
     /// Abre o cierra el menú de pausa, controlando la escala de tiempo y la visibilidad del cursor.
     /// </summary>
-    private void ChangeToPause()
+    public void ChangeToPause()
     {
         PauseMenu();
     }
@@ -157,13 +158,32 @@ public class GameController : MonoBehaviour
         HUDControl.instance.ChangeStatesPauseScreen(gamePaused);
     }
     /// <summary>
-    /// Respawn al jugador en el punto de respawn designado.
+    /// Respawn al jugador en el punto de respawn designado. Freezea al jugador y lo desfreezea para evitar bug de rebote
+    /// al respawnear.
     /// </summary>
-    public void Respawn()
+    public async void Respawn()
     {
         Animator anim = player.GetComponent<Animator>();
         anim.Play("idle");
-        player.transform.position = respawnPoint.transform.position;
+        Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
+        Vector3 spawnPosition = respawnPoint.transform.position;
+        Debug.Log(Vector3ToString(spawnPosition));
+        player.transform.position = spawnPosition;
+        if (playerRigidbody != null)
+        {
+            playerRigidbody.velocity = Vector3.zero;
+            playerRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            await Task.Delay(1);
+            playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionX;
+            playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
+            playerRigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+        }
+        Vector3 playerPosition = player.transform.position;
+        Debug.Log(Vector3ToString(playerPosition));
+    }
+    string Vector3ToString(Vector3 vector)
+    {
+        return "(" + vector.x.ToString() + ", " + vector.y.ToString() + ", " + vector.z.ToString() + ")";
     }
     /// <summary>
     /// Agrega la cantidad especificada de anillos y actualiza el HUD en consecuencia.
@@ -282,12 +302,12 @@ public class GameController : MonoBehaviour
 
     }
     /// <summary>
-    /// Rutina de respawn demorado después de un breve retraso.
+    /// Espera 0.1 segundos para ejecutar el metodo Respawn()
     /// </summary>
     /// <returns>Instrucción de espera para WaitForSeconds.</returns>
-    public IEnumerator DelayedRespawnRoutine()
+    public async void DelayedRespawnRoutine()
     {
-        yield return new WaitForSeconds(0.1f);
+        await Task.Delay(100);
         Respawn();
     }
     /// <summary>

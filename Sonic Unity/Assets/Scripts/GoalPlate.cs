@@ -53,7 +53,7 @@ public class GoalPlate : MonoBehaviour
     /// <param name="rigidbody">Rigidbody del personaje.</param>
     IEnumerator StopCharacter(Rigidbody rigidbody)
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.07f);
         if (rigidbody != null)
         {
             rigidbody.velocity = Vector3.zero;

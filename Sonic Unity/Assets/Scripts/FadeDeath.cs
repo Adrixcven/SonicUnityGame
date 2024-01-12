@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class FadeDeath : MonoBehaviour
@@ -13,12 +14,12 @@ public class FadeDeath : MonoBehaviour
         gameController = GameObject.FindGameObjectWithTag("GC").GetComponent<GameController>();
     }
     /// <summary>
-    /// Inicia una función de muerte por desvanecimiento, activando una rutina de reaparición con retraso en el GameController,
+    /// Inicia una función de muerte por desvanecimiento, activando el metodo de reaparición en el GameController,
     /// y reproduciendo una animación "FadeOff" en el GameObject actual.
     /// </summary>
-    public void FadeDeathFunction()
+    public async void FadeDeathFunction()
     {
-        StartCoroutine(gameController.GetComponent<GameController>().DelayedRespawnRoutine());
+        gameController.GetComponent<GameController>().Respawn();
         gameObject.GetComponent<Animation>().Play("FadeOff");
     }
     /// <summary>
