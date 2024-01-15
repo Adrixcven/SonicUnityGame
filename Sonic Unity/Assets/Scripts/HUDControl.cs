@@ -151,7 +151,7 @@ public class HUDControl : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene(0);
         Debug.Log("Funciona");
     }
     /// <summary>

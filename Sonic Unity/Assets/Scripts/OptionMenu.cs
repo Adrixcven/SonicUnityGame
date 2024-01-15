@@ -13,6 +13,32 @@ public class OptionMenu : MonoBehaviour
     private int selectedRes;
     public TMP_Text resolutionTXT;
     /// <summary>
+    /// Se suscribe al evento sceneLoaded del SceneManager para manejar la carga de escenas.
+    /// </summary>
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    /// <summary>
+    /// Se desuscribe del evento sceneLoaded del SceneManager para evitar fugas de memoria.
+    /// </summary>
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    /// <summary>
+    /// Destruye el GameObject si la escena cargada tiene un índice de construcción de 3 o 4.
+    /// </summary>
+    /// <param name="scene">La escena cargada.</param>
+    /// <param name="mode">El LoadSceneMode utilizado para cargar la escena.</param>
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 3 || scene.buildIndex == 4)
+        {
+            Destroy(gameObject);
+        }
+    }
+    /// <summary>
     /// Configura el patrón singleton para garantizar que solo exista una instancia en todas las escenas.
     /// </summary>
     private void Awake()
